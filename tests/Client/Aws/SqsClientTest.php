@@ -43,6 +43,18 @@ class SqsClientTest extends \PHPUnit_Framework_TestCase
         ], $client->receive());
     }
 
+    public function testReceiveSnsMessageWithoutValidator()
+    {
+        $snsMessage = $this->getSqsMessage($this->getSnsMessage(self::MESSAGE_CONTENT));
+        $awsClient = $this->getReceivingAwsClientMock(['Messages' => [$snsMessage]]);
+
+        $client = new SqsClient($awsClient, self::RESOURCE);
+
+        $this->assertEquals([
+            'Messages' => [$snsMessage]
+        ], $client->receive());
+    }
+
     public function testReceiveSqsMessage()
     {
         $sqsMessage = $this->getSqsMessage(self::MESSAGE_CONTENT);

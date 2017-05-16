@@ -118,10 +118,12 @@ class SqsClient extends AbstractAwsClient
             $message = new Message($body);
 
             // if message is legit and valid unfold the body to get rid of the envelop
-            if ($this->validator->isValid($message)) {
+            if (null !== $this->validator && $this->validator->isValid($message)) {
                 return $body['Message'];
             }
         } catch (\InvalidArgumentException $e) {
+            // the constructor of the Message class throws the exception if the passed
+            // data simply isn't representing a SNS Message…which is perfectly ok
         }
 
         return json_encode($body);
