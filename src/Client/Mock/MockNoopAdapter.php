@@ -2,6 +2,10 @@
 
 namespace PetsDeli\QueueBundle\Client\Mock;
 
+/**
+ * @method mixed send(array $args = [])
+ * @method mixed receive(array $args = [])
+ */
 class MockNoopAdapter
 {
     /**

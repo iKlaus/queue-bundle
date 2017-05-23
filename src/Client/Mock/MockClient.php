@@ -13,12 +13,18 @@ class MockClient implements ClientInterface
     private $client;
 
     /**
+     * @var string
+     */
+    private $resource;
+
+    /**
      * @param MockNoopAdapter $client
-     * @param string          $resource
+     * @param string|null     $resource
      */
     public function __construct(MockNoopAdapter $client, string $resource = null)
     {
         $this->client = $client;
+        $this->resource = $resource;
     }
 
     /**

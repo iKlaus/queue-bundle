@@ -87,7 +87,7 @@ class SnsClient extends AbstractAwsClient
     /**
      * @param array $args
      *
-     * @return Result
+     * @return void
      */
     public function receive(array $args = [])
     {
